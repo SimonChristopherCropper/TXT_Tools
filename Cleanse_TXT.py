@@ -77,6 +77,7 @@ if root.filename:
 		# Single curley or oblique quotes
 		r'\\xe2\\x80\\x98' : "'" ,
 		r'\\xe2\\x80\\x99' : "'" ,
+		r'\\xc2\\x81[fgh]' : "'" ,
 		r'\\xc2\\xa1\\xc2\\xa5' : "'" , 
 		r'\\xc2\\xa1\\xc2\\xa6' : "'" ,
 		
@@ -93,6 +94,7 @@ if root.filename:
 		r'\\xe2\\x80\\x93' : '-' ,
 		r'\\xe2\\x80\\x94' : '-' ,
 		r'\\xe2\\x80\\x95' : '-' ,
+		r'\\xc2\\xad' : '-' ,
 		
 		# Various bullets
 		r'\\xc2\\xb7' : '*' ,
@@ -104,18 +106,32 @@ if root.filename:
 		r'\\xe2\\x80\\xa6' : '...' ,
 		
 		# Fractions
+		r'\\xc2\\xbc' : '1/4' ,
 		r'\\xc2\\xbd' : '1/2' ,
+		r'\\xc2\\xbe' : '3/4' ,
+		r'\\xc2\\xa9' : '(c)' ,
+		r'\\xc2\\xb0[Cc]' : 'degrees celcius' ,
+		r'\\xc2\\xb0' : ' degrees' ,
 		
 		# Characters with cedilla, grave, acute, circumflex, diaeresis
 		r'\\xc3\\xa9' : 'e' ,
+		r'\\xc3\\xab' : 'e' ,
+		r'\\xc3\\xa8' : 'e' ,
+		r'\\xc3\\xb1' : 'n' ,
 		
 		# Ambiguous muddled sequences
 		r'\\xc3\\xa2\\xe2\\x82\\xac\\xe2\\x84\\xa2' : "'" ,
 		r'\\xc3\\xa2\\xe2\\x82\\xac' : '-' ,
+		r'\\xc2\\x81\\xc5\\x93' : '-' ,
+		r'\\xc6\\x92\\xc2\\xba' : ' ' ,
 		r'\\xc6\\x92' : ' ' ,
 		r'\\xc6\\x92n' : ' '  ,
+
 		r'\\xc3\\x9f' : ' ' ,
-		r'\\xe2\\x80\\x9e\\xc3\\x91' : ' ' 
+		r'\\xc2\\xac' : ' ' ,
+		r'\\xe2\\x80\\x9e\\xc3\\x91' : ' ' ,
+		r'\\xc2\\xa1\\xc3\\xaa' : ' ' ,
+		r'\\xc2\\xa1V' : '-' 
 			}
 			
 	for UnicodeStr, ReplaceStr in Substitutions.items():
@@ -147,10 +163,12 @@ if root.filename:
 		
 		# Scan output file for any more charcater sequences that 
 		# need to be adressed
+		LineNum = 1
 		for line in open(output_filepath,"r", 
 								encoding="ascii", errors="backslashreplace"):
+			LineNum += 1
 			if re.search(r'\\x[a-z0-9]{2}', line):
-				exceptions_file.write(line)
+				exceptions_file.write(str(LineNum) + " " + line)
 		
 		# Close file
 		exceptions_file.close()
@@ -165,7 +183,7 @@ if root.filename:
 		
 			# Let the user know more work required.
 			print("WARNING: Exceptions still occur in the cleansed data")
-			print("Open the file '{}' and review the lines containing unicode.".format(exception_filepath))
+			print("Open the file '{}' and review the lines containing unicode.".format(exceptions_filepath))
 			
 # Capture that dialog exited and returns no list
 else:
