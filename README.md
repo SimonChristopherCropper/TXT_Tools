@@ -10,7 +10,7 @@ These scripts can be run with Python 3.
 
 # Scripts available
 
-## Cleanse TXT
+## Recast TXT
 
 This script is used to replace commonly encountered abberrant characters and remove anything that can't be distinguished as text, numerals or common punctuation.
 
