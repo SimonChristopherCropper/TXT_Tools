@@ -1,16 +1,18 @@
-# Introduction 
+# Tools to manipulate text files
+
+## Introduction 
 
 This is a suite of scripts for manipulation of text files using Python.
 
 The programs are generic so should work in a variety of contexts. 
 
-# Getting Started
+## Getting Started
 
 These scripts can be run with Python 3.
 
-# Scripts available
+## Scripts available
 
-## Recast TXT
+### Recast TXT
 
 This script is used to replace commonly encountered abberrant characters and remove anything that can't be distinguished as text, numerals or common punctuation.
 
@@ -26,8 +28,18 @@ All output files are saved in the same directory as the original file. The origi
 
 **Note 2** - Aberrant characters can originate from several sources. When moving data, via cut-and-paste, from two known environments (e.g. UTF-8 to CP1252, CP10000 to CP1252) character reconciliation is usually straightforward but in a modern workplace where people can be using many environments (Windows Desktop with CP1252, Macintosh Laptop or iPad with codepage 10,000, Internet based environment coded in UTF-8) and where most computer systems are not codepage aware, you can end up with a subset of characters that can not be interpreted by the system you are operating within at any particular time. This can be further complicated when you move between 7-bit, 8-bit, 16-bit or 32-bit environments where a single character can be represented by a string of 2-3 characters when you try and decode it in the wrong codepage.
 
-# Contribute
+## Contribute
 
 If you want to contribute to this list of scripts, clone the VSTS repo and test your changes or updates in a sensible named branch before pushing to master.
 
 Please do not post routines that have hardcoded data references that can't work in most situations.
+
+## Licenses
+
+Software developed under this project is being released under a [GNU General Public License, version 3 (GPL-3.0)][1] license.
+
+Supportive documentation is released under a [Creative Commons Attribution 4.0 International (CC-BY)][2] license.
+
+
+[1]: https://opensource.org/licenses/GPL-3.0
+[2]: https://creativecommons.org/licenses/by/4.0/legalcode
