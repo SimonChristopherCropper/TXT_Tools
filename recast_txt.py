@@ -119,6 +119,9 @@ if ROOT.filename:
         r'\\xe2\\x80\\x94' : '-',
         r'\\xe2\\x80\\x95' : '-',
         r'\\xc2\\xad' : '-',
+        
+        # non-breaking white space
+        r'\\xc2\\xa0' : ' ',
 
         # Various bullets
         r'\\xc2\\xb7' : '*',
@@ -163,8 +166,8 @@ if ROOT.filename:
 
     if FINISH_STRING == START_STRING:
 
-        # Good news, no abberrant characters found
-        print("No clean-up required")
+        # Good news, no aberrant characters found
+        print("No clean-up required as no aberrant characters found")
 
     else:
 
